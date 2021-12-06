@@ -313,6 +313,7 @@ export default class GanttChartResource extends LightningElement {
     }
 
     handleAddAllocationDataChange(event) {
+        console.debug('handleAddAllocationDataChange: ' + event.target.value);
         this.addAllocationData[event.target.dataset.field] = event.target.value;
 
         if (!this.addAllocationData.projectId) {
