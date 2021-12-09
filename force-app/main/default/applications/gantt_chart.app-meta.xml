@@ -11,10 +11,13 @@
         <pageOrSobjectType>Project__c</pageOrSobjectType>
     </actionOverrides>
     <brand>
-        <headerColor>#0070D2</headerColor>
+        <headerColor>#1428BF</headerColor>
+        <logo>ganttchart_1</logo>
+        <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
-    <description>A Gantt Chart</description>
+    <description
+    >A Gantt Chart to manage your projects and resources</description>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
