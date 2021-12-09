@@ -2,7 +2,7 @@
     "orgName": "Demo company",
     "edition": "Developer",
     "features": ["EnableSetPasswordInApi"],
-    "hasSampleData": "true",
+    "hasSampleData": true,
     "language": "en_US",
     "settings": {
         "lightningExperienceSettings": {

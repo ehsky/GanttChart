@@ -1,0 +1,14 @@
+{
+    "Username": "henryLaurenceGantt@sfdx.org",
+    "FirstName": "Henry Laurence",
+    "LastName": "Gantt's",
+    "Email": "henryLaurenceGantt@sfdx.org",
+    "Alias": "GTC",
+    "TimeZoneSidKey": "Europe/Paris",
+    "LocaleSidKey": "no_NO",
+    "EmailEncodingKey": "UTF-8",
+    "LanguageLocaleKey": "en_US",
+    "profileName": "System Administrator",
+    "permsets": ["viewAndmanageGanttChart"],
+    "generatePassword": true
+}

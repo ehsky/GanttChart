@@ -9,11 +9,16 @@
         {
             "files": "force-app/**/**/lwc/**/*.html",
             "options": { "parser": "lwc" }
-
         },
         {
             "files": "*.{cmp,page,component}",
             "options": { "parser": "html" }
+        },
+        {
+            "files": "*.md",
+            "options": {
+                "tabWidth": 2
+            }
         }
     ]
 }
