@@ -247,10 +247,8 @@ export default class GanttChartResource extends LightningElement {
       */
                 //fix for Uncaught (in promise) TypeError: 'set' on proxy: trap returned falsish for property 'class'
                 self.resource.allocationsByProject[projectId].forEach(
-                    (allocation2) => {
-                        let allocation = JSON.parse(
-                            JSON.stringify(allocation2)
-                        );
+                    (tempAllocation) => {
+                        let allocation = Object.assign({}, tempAllocation);
                         allocation.class = self.calcClass(allocation);
                         allocation.style = self.calcStyle(allocation);
                         allocation.labelStyle = self.calcLabelStyle(allocation);
@@ -267,9 +265,8 @@ export default class GanttChartResource extends LightningElement {
     handleTimeslotClick(event) {
         const start = new Date(parseInt(event.currentTarget.dataset.start, 10));
         const end = new Date(parseInt(event.currentTarget.dataset.end, 10));
-        const startUTC =
-            start.getTime() + start.getTimezoneOffset() * 60 * 1000;
-        const endUTC = end.getTime() + end.getTimezoneOffset() * 60 * 1000;
+        const startUTC = new Date(this.getYYYYMMDD(start)).getTime();
+        const endUTC = new Date(this.getYYYYMMDD(end)).getTime();
 
         if (this.projectId) {
             this._saveAllocation({
@@ -313,7 +310,6 @@ export default class GanttChartResource extends LightningElement {
     }
 
     handleAddAllocationDataChange(event) {
-        console.debug('handleAddAllocationDataChange: ' + event.target.value);
         this.addAllocationData[event.target.dataset.field] = event.target.value;
 
         if (!this.addAllocationData.projectId) {
@@ -424,17 +420,15 @@ export default class GanttChartResource extends LightningElement {
 
         let startDate = new Date(allocation.Start_Date__c + 'T00:00:00');
         let endDate = new Date(allocation.End_Date__c + 'T00:00:00');
-
-        this._saveAllocation({
+        let allObj = {
             allocationId: allocation.Id,
-            startDate:
-                startDate.getTime() +
-                startDate.getTimezoneOffset() * 60 * 1000 +
-                '',
-            endDate:
-                endDate.getTime() + endDate.getTimezoneOffset() * 60 * 1000 + ''
-        });
-
+            startDate: startDate.getTime(),
+            // +
+            // startDate.getTimezoneOffset() * 60 * 1000 +
+            // '',
+            endDate: endDate.getTime() // + endDate.getTimezoneOffset() * 60 * 1000 + ''
+        };
+        this._saveAllocation(allObj);
         this.dragInfo = {};
         this.template.querySelector(
             '.' + allocation.Id + ' .lwc-allocation'
@@ -448,7 +442,6 @@ export default class GanttChartResource extends LightningElement {
         const start = new Date(parseInt(event.currentTarget.dataset.start, 10));
         const end = new Date(parseInt(event.currentTarget.dataset.end, 10));
         const index = parseInt(event.currentTarget.dataset.index, 10);
-
         if (isNaN(this.dragInfo.startIndex)) {
             this.dragInfo.startIndex = index;
         }
@@ -460,40 +453,41 @@ export default class GanttChartResource extends LightningElement {
         );
 
         switch (direction) {
-            case 'left':
+            case 'left': {
                 if (index <= allocation.right) {
-                    allocation.Start_Date__c = start.toJSON().substr(0, 10);
+                    allocation.Start_Date__c = this.getYYYYMMDD(start);
                     allocation.left = index;
                 } else {
                     allocation = this.dragInfo.newAllocation;
                 }
                 break;
-            case 'right':
+            }
+            case 'right': {
                 if (index >= allocation.left) {
-                    allocation.End_Date__c = end.toJSON().substr(0, 10);
+                    allocation.End_Date__c = this.getYYYYMMDD(end);
                     allocation.right = index;
                 } else {
                     allocation = this.dragInfo.newAllocation;
                 }
                 break;
-            default:
+            }
+            default: {
                 let deltaIndex = index - this.dragInfo.startIndex;
                 let firstSlot = this.times[0];
                 let startDate = new Date(firstSlot.start);
                 let endDate = new Date(firstSlot.end);
-
                 allocation.left = allocation.left + deltaIndex;
                 allocation.right = allocation.right + deltaIndex;
-
                 startDate.setDate(
                     startDate.getDate() + allocation.left * this.dateIncrement
                 );
+
                 endDate.setDate(
                     endDate.getDate() + allocation.right * this.dateIncrement
                 );
-
-                allocation.Start_Date__c = startDate.toJSON().substr(0, 10);
-                allocation.End_Date__c = endDate.toJSON().substr(0, 10);
+                allocation.Start_Date__c = this.getYYYYMMDD(startDate); // startDate.toJSON().substr(0, 10);
+                allocation.End_Date__c = this.getYYYYMMDD(endDate); // endDate.toJSON().substr(0, 10);
+            }
         }
 
         this.dragInfo.newAllocation = allocation;
@@ -543,7 +537,7 @@ export default class GanttChartResource extends LightningElement {
         }
     }
 
-    handleModalEditClick(event) {
+    handleModalEditClick() {
         this.editAllocationData = {
             resourceName: this.resource.Name,
             projectName: this.menuData.allocation.projectName,
@@ -579,10 +573,11 @@ export default class GanttChartResource extends LightningElement {
 
     editAllocationModalSuccess() {
         const startDate = new Date(
-            this.editAllocationData.startDate + 'T00:00:00'
+            this.getYYYYMMDD(this.editAllocationData.startDate)
         );
-        const endDate = new Date(this.editAllocationData.endDate + 'T00:00:00');
-
+        const endDate = new Date(
+            this.getYYYYMMDD(this.editAllocationData.endDate)
+        );
         this._saveAllocation({
             allocationId: this.editAllocationData.id,
             projectId: this.editAllocationData.projectId,
@@ -611,7 +606,7 @@ export default class GanttChartResource extends LightningElement {
             });
     }
 
-    handleMenuDeleteClick(event) {
+    handleMenuDeleteClick() {
         this.editAllocationData = {
             id: this.menuData.allocation.Id
         };
@@ -640,5 +635,17 @@ export default class GanttChartResource extends LightningElement {
                     })
                 );
             });
+    }
+
+    /**
+     * Date formatter with support for local timeZone
+     * @param {Date} d
+     * @returns {String} `YYYY-MM-DD`
+     */
+    getYYYYMMDD(d) {
+        const _d = new Date(d);
+        return new Date(_d.getTime() - _d.getTimezoneOffset() * 60 * 1000)
+            .toISOString()
+            .split('T')[0];
     }
 }
