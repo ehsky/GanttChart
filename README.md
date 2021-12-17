@@ -1,14 +1,19 @@
 # Project and resource mgmt in Gantt chart
 
-This project includes a project focused gantt chart to show light overview of resource allocations.
+This repo includes project focused gantt chart to show a light overview of resource allocations.
+It is hosted and built on the salesforce platform.
 
 ![Content aware project](/.assets/ganttChart.png)
 
-## Setup
+## Deployment
 
-After install assign the permission set `View and manage Gantt Chart` to your user.
+You can use the quick installer here to deploy directly to your org.
 
-### Scratch org setup
+[![Deploy to salesforce](/.assets/deploy.png)](https://githubsfdeploy.herokuapp.com/?owner=ehsky&repo=GanttChart)
+
+After install assign the permission set `View and manage Gantt Chart` to relevant users.
+
+## Scratch org setup
 
 After you have created the scratch org assign `sfdx force:user:permset:assign --permsetname viewAndmanageGanttChart`.
 This repo includes a user definition file. You can spin up that using `sfdx force:user:create --definitionfile config/user-def.json`.
