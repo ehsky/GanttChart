@@ -1,7 +1,7 @@
 /**
  * @description       :
  * @group             :
- * @last modified on  : 12-06-2021
+ * @last modified on  : 12-17-2021
  * @last modified by  : erlend.hansen@stretch.no | https://trailblazer.me/id/ehansen7
  **/
 public with sharing class ganttChart {
@@ -100,6 +100,7 @@ public with sharing class ganttChart {
                         SELECT Id, Name, Active__c, Default_Role__c
                         FROM Resource__c
                         WHERE Id = :recordId
+                        WITH SECURITY_ENFORCED
                     ];
 
                     resourceById.put(
@@ -199,6 +200,7 @@ public with sharing class ganttChart {
             SELECT Id, Name, Default_Role__c
             FROM Resource__c
             WHERE Active__c = TRUE
+            WITH SECURITY_ENFORCED
             ORDER BY Name
         ]) {
             resources.add(
@@ -219,6 +221,7 @@ public with sharing class ganttChart {
             SELECT Id, Name
             FROM Project__c
             WHERE Active__c = TRUE
+            WITH SECURITY_ENFORCED
             ORDER BY Name
         ];
     }

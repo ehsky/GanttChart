@@ -1,14 +1,14 @@
 <!--
   @description       : 
   @group             : 
-  @last modified on  : 12-06-2021
+  @last modified on  : 12-09-2021
   @last modified by  : erlend.hansen@stretch.no | https://trailblazer.me/id/ehansen7
 -->
 <template>
     <div class="slds-scope">
         <div class="slds-card slds-theme_default">
             <!-- Header Bar -->
-            <div class="slds-p-around_medium slds-border_bottom">
+            <div class="slds-var-p-around_medium slds-border_bottom">
                 <div class="slds-grid slds-grid_vertical-align-center">
                     <!-- Filter Button -->
                     <div class="slds-col slds-grow-none slds-col_bump-right">
@@ -51,7 +51,7 @@
                                 type="date"
                                 name="select-date"
                                 variant="label-hidden"
-                                class="lwc-datepicker slds-m-left_small"
+                                class="lwc-datepicker slds-var-m-left_small"
                                 value={datePickerString}
                                 onchange={navigateToDay}
                             ></lightning-input>
@@ -63,7 +63,7 @@
                                 options={view.options}
                                 onchange={handleViewChange}
                                 variant="label-hidden"
-                                class="slds-m-left_small"
+                                class="slds-var-m-left_small"
                             ></lightning-combobox>
                             <!-- /View Select -->
                         </div>
@@ -71,7 +71,10 @@
                     <!-- /Date Navigation -->
                 </div>
                 <!-- Filter Status -->
-                <div if:true={_filterData.message} class="slds-m-top_x-small">
+                <div
+                    if:true={_filterData.message}
+                    class="slds-var-m-top_x-small"
+                >
                     <p class="slds-text-body_small slds-text-color_weak">
                         {_filterData.message}
                     </p>
@@ -82,15 +85,15 @@
 
             <!-- Gantt Chart -->
             <div class="slds-scrollable_x">
-                <div class="slds-p-around_medium lwc-chart_container">
+                <div class="slds-var-p-around_medium lwc-chart_container">
                     <!-- Timeline -->
                     <div class="slds-grid lwc-timeline">
                         <div
                             if:false={isResourceView}
-                            class="slds-col slds-size_1-of-6 slds-align-bottom "
+                            class="slds-col slds-size_1-of-6 slds-align-bottom"
                         >
                             <div
-                                class="slds-text-heading_medium slds-p-around_small"
+                                class="slds-text-heading_medium slds-var-p-around_small"
                             >
                                 Resources
                             </div>
@@ -108,7 +111,7 @@
                                                 class="slds-col slds-has-flexi-truncate"
                                             >
                                                 <div
-                                                    class="lwc-timeline_month slds-p-around_xx-small slds-theme_shade slds-text-align_center slds-text-color_weak slds-text-body_small slds-m-horizontal_x-small slds-truncate"
+                                                    class="lwc-timeline_month slds-var-p-around_xx-small slds-theme_shade slds-text-align_center slds-text-color_weak slds-text-body_small slds-var-m-horizontal_x-small slds-truncate"
                                                 >
                                                     {date.name}
                                                 </div>
@@ -159,7 +162,7 @@
                     <!-- Empty State -->
                     <div
                         if:false={resources.length}
-                        class="slds-text-align_center slds-p-around_medium"
+                        class="slds-text-align_center slds-var-p-around_medium"
                     >
                         <span class="slds-text-color_weak"
                             >No Resources to Show</span
@@ -169,7 +172,7 @@
                     <!-- /Allocation Table -->
 
                     <!-- Add Resource Button -->
-                    <div if:true={isProjectView} class="slds-m-top_medium">
+                    <div if:true={isProjectView} class="slds-var-m-top_medium">
                         <lightning-button
                             variant="neutral"
                             label="Add Resource"
@@ -201,7 +204,7 @@
             variant="brand"
             label="Add Resource"
             onclick={addResourceById}
-            class="slds-m-left_xx-small"
+            class="slds-var-m-left_xx-small"
             disabled={resourceModalData.disabled}
         ></lightning-button>
     </c-gantt_chart_modal>
