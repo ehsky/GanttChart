@@ -4,6 +4,10 @@
         <application>gantt_chart</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <classAccesses>
+        <apexClass>ganttChart</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <description
     >Grants access to the app related objects to view and manage projects in Gantt Cart</description>
     <fieldPermissions>
@@ -51,4 +55,16 @@
         <object>Resource__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <tabSettings>
+        <tab>Overview</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Project__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Resource__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>
