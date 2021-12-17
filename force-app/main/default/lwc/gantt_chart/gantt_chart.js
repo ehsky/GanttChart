@@ -125,11 +125,9 @@ export default class GanttChart extends LightningElement {
 
             this.datePickerString = _startDate.toISOString();
 
-            this.startDate = moment(_startDate).day(1).toDate();
+            this.startDate = window.moment(_startDate).day(1).toDate();
             this.startDateUTC =
-                moment(this.startDate).utc().valueOf() -
-                moment(this.startDate).utcOffset() * 60 * 1000 +
-                '';
+                window.moment(this.startDate).utc().valueOf() + '';
             this.formattedStartDate = this.startDate.toLocaleDateString();
 
             this.setDateHeaders();
@@ -144,12 +142,13 @@ export default class GanttChart extends LightningElement {
     }
 
     setDateHeaders() {
-        this.endDate = moment(this.startDate)
+        this.endDate = window
+            .moment(this.startDate)
             .add(this.view.slots * this.view.slotSize - 1, 'days')
             .toDate();
         this.endDateUTC =
-            moment(this.endDate).utc().valueOf() -
-            moment(this.endDate).utcOffset() * 60 * 1000 +
+            window.moment(this.endDate).utc().valueOf() -
+            window.moment(this.endDate).utcOffset() * 60 * 1000 +
             '';
         this.formattedEndDate = this.endDate.toLocaleDateString();
 
@@ -161,8 +160,8 @@ export default class GanttChart extends LightningElement {
         let dates = {};
 
         for (
-            let date = moment(this.startDate);
-            date <= moment(this.endDate);
+            let date = window.moment(this.startDate);
+            date <= window.moment(this.endDate);
             date.add(this.view.slotSize, 'days')
         ) {
             let index = date.format('YYYYMM');
@@ -181,7 +180,9 @@ export default class GanttChart extends LightningElement {
             };
 
             if (this.view.slotSize > 1) {
-                let end = moment(date).add(this.view.slotSize - 1, 'days');
+                let end = window
+                    .moment(date)
+                    .add(this.view.slotSize - 1, 'days');
                 day.end = end.toDate();
             } else {
                 day.end = date.toDate();
@@ -590,7 +591,6 @@ export default class GanttChart extends LightningElement {
     handleRefresh() {
         // refreshApex(this.wiredData);
         let self = this;
-
         getChartData({
             recordId: self.recordId ? self.recordId : '',
             startTime: self.startDateUTC,
@@ -602,6 +602,7 @@ export default class GanttChart extends LightningElement {
             filterStatus: self._filterData.status
         })
             .then((data) => {
+                debugger;
                 self.isResourceView =
                     typeof self.objectApiName !== 'undefined' &&
                     self.objectApiName.endsWith('Resource__c');
@@ -636,8 +637,6 @@ export default class GanttChart extends LightningElement {
 
                     self.resources.push(newResource);
                 });
-
-                debugger;
             })
             .catch((error) => {
                 this.dispatchEvent(
