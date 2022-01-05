@@ -10,31 +10,48 @@
 }
 /****** Allocation Actions Menu ******/
 
-
 /*** Allocations ***/
 .lwc-allocation {
     background-color: rgba(21, 137, 238);
-    border-radius: .25rem;
-    cursor: grab; 
-    opacity: .85;
-    padding: .25rem;
+    border-radius: 0.25rem;
+    cursor: grab;
+    opacity: 0.85;
+    padding: 0.25rem;
     pointer-events: auto;
     top: 0px;
 }
 
 .lwc-allocation:hover {
-    opacity: .95;
+    opacity: 0.95;
 }
 
 /****** Allocation Status ******/
 .lwc-allocation.hold {
-    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.1) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.1) 75%,
+        transparent 75%,
+        transparent
+    );
     background-size: 64px 64px;
 }
 
 .lwc-allocation.unavailable {
     background-color: rgb(81, 79, 77);
-    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.1) 75%,
+        transparent 75%,
+        transparent
+    );
     background-size: 64px 64px;
 }
 /****** /Allocation Status ******/
@@ -76,7 +93,7 @@
 
 .lwc-allocation:hover .lwc-allocation_handle,
 .lwc-allocation:hover .lwc-allocation_actions {
-    opacity: .7;
+    opacity: 0.7;
 }
 
 .lwc-allocation .lwc-allocation_handle:hover,
@@ -91,7 +108,7 @@
 
 .lwc-allocation-label {
     color: rgb(255, 255, 255);
-    padding: .25rem;
+    padding: 0.25rem;
     text-align: center;
     text-overflow: ellipsis;
     top: 1px;
@@ -103,6 +120,9 @@
     border-left: 1px solid #dddbda;
     border-top: 1px solid #dddbda;
     min-width: 190px;
+}
+.lwc-resource .slds-media .slds-media__body h3 {
+    white-space: break-spaces;
 }
 /*** /Resource ***/
 
@@ -127,7 +147,7 @@
     border-left: 3px solid #dddbda;
 }
 
-.lwc-timeslot.lwc-is-week-end, 
+.lwc-timeslot.lwc-is-week-end,
 .lwc-timeslot:last-child {
     border-right: 3px solid #dddbda;
 }
