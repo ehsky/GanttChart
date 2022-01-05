@@ -4,3 +4,6 @@
 
 # LWC Jest tests
 **/__tests__/**
+
+# Remove profiles from repo
+force-app\main\default\profiles

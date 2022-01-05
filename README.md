@@ -11,7 +11,8 @@ You can use the quick installer here to deploy directly to your org.
 
 [![Deploy to salesforce](/.assets/deploy.png)](https://githubsfdeploy.herokuapp.com/?owner=ehsky&repo=GanttChart)
 
-After install assign the permission set `View and manage Gantt Chart` to relevant users.
+After install assign the permission set `View and manage Gantt Chart` to relevant users. \
+If you clone the repo you can assign the permission set with `sfdx force:user:permset:assign --permsetname viewAndmanageGanttChart`
 
 ## Scratch org setup
 
