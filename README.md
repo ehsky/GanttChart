@@ -5,18 +5,25 @@ It is hosted and built on the salesforce platform.
 
 ![Content aware project](/.assets/ganttChart.png)
 
+Gantt chart view options
+
+- View by Day
+- View by Day for Month
+- View by Week
+- View by Week for Quarter
+- View by Week for half Year
+
 ## Deployment
 
 You can use the quick installer here to deploy directly to your org.
 
 [![Deploy to salesforce](/.assets/deploy.png)](https://githubsfdeploy.herokuapp.com/?owner=ehsky&repo=GanttChart)
 
-After install assign the permission set `View and manage Gantt Chart` to relevant users. \
-If you clone the repo you can assign the permission set with `sfdx force:user:permset:assign --permsetname viewAndmanageGanttChart`
+After install assign the permission set `View and manage Gantt Chart` to relevant users.
 
 ## Scratch org setup
 
-After you have created the scratch org assign `sfdx force:user:permset:assign --permsetname viewAndmanageGanttChart`.
+After you have created the scratch org assign `sfdx force:user:permset:assign --permsetname viewAndmanageGanttChart`. \
 This repo includes a user definition file. You can spin up that using `sfdx force:user:create --definitionfile config/user-def.json`.
 
 ## Gantt Chart consist of following components

@@ -17,7 +17,7 @@
                 name="defaultView"
                 type="String"
                 label="Default View Mode"
-                datasource="View by Day, View by Week"
+                datasource="View by Day, View by Week, View by Month, View by Quarter, View by half Year"
                 default="View by Week"
             />
         </targetConfig>

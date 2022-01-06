@@ -38,8 +38,20 @@ export default class GanttChart extends LightningElement {
                 value: '1/14'
             },
             {
+                label: 'View by Month',
+                value: '1/30'
+            },
+            {
                 label: 'View by Week',
                 value: '7/10'
+            },
+            {
+                label: 'View by Quarter',
+                value: '7/14'
+            },
+            {
+                label: 'View by half Year',
+                value: '7/26'
             }
         ],
         slotSize: 1,
@@ -100,6 +112,15 @@ export default class GanttChart extends LightningElement {
             switch (this.defaultView) {
                 case 'View by Day':
                     this.setView('1/14');
+                    break;
+                case 'View by Month':
+                    this.setView('1/30');
+                    break;
+                case 'View by Quarter':
+                    this.setView('7/14');
+                    break;
+                case 'View by half Year':
+                    this.setView('7/26');
                     break;
                 default:
                     this.setView('7/10');
