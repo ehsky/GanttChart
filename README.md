@@ -8,10 +8,10 @@ It is hosted and built on the salesforce platform.
 Gantt chart view options
 
 - View by Day
-- View by Day for Month
+- View by Day for Month (only supported on full width pages)
 - View by Week
 - View by Week for Quarter
-- View by Week for half Year
+- View by Week for half Year (only supported on full width pages)
 
 ## Deployment
 
