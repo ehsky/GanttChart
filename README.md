@@ -13,6 +13,12 @@ Gantt chart view options
 - View by Week for Quarter
 - View by Week for half Year (only supported on full width pages)
 
+## Demo
+
+You can quickly spin up an org by clicking on the picture below. \
+This will create a scratch org that you have access to for 1 day \
+[![Demo scratch org](/.assets/deployDemo.png)](https://hosted-scratch.herokuapp.com/launch?template=https://github.com/ehsky/GanttChartt)
+
 ## Deployment
 
 You can use the quick installer here to deploy directly to your org.
