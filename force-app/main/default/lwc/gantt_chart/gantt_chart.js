@@ -33,29 +33,37 @@ export default class GanttChart extends LightningElement {
     @track view = {
         // View Select
         options: [
+            // {
+            //     label: 'View 3 Days',
+            //     value: '1/3'
+            // },
+            // {
+            //     label: 'View 1 Week',
+            //     value: '1/7'
+            // },
             {
                 label: 'View by Day',
                 value: '1/14'
             },
-            {
-                label: 'View by Month',
-                value: '1/30'
-            },
+            // {
+            //     label: 'View by Month',
+            //     value: '1/30'
+            // },
             {
                 label: 'View by Week',
                 value: '7/10'
-            },
-            {
-                label: 'View by Quarter',
-                value: '7/14'
-            },
-            {
-                label: 'View by half Year',
-                value: '7/26'
             }
+            // {
+            //     label: 'View by Quarter',
+            //     value: '7/14'
+            // },
+            // {
+            //     label: 'View by half Year',
+            //     value: '7/26'
+            // }
         ],
         slotSize: 1,
-        slots: 1
+        slots: 10
     };
 
     /*** Modals ***/
@@ -113,15 +121,15 @@ export default class GanttChart extends LightningElement {
                 case 'View by Day':
                     this.setView('1/14');
                     break;
-                case 'View by Month':
-                    this.setView('1/30');
-                    break;
-                case 'View by Quarter':
-                    this.setView('7/14');
-                    break;
-                case 'View by half Year':
-                    this.setView('7/26');
-                    break;
+                // case 'View by Month':
+                //     this.setView('1/30');
+                //     break;
+                // case 'View by Quarter':
+                //     this.setView('7/14');
+                //     break;
+                // case 'View by half Year':
+                //     this.setView('7/26');
+                //     break;
                 default:
                     this.setView('7/10');
             }
@@ -268,16 +276,26 @@ export default class GanttChart extends LightningElement {
 
     setView(value) {
         let values = value.split('/');
+        console.debug('setView values' + values);
         this.view.value = value;
         this.view.slotSize = parseInt(value[0], 10);
         this.view.slots = parseInt(values[1], 10);
     }
 
     handleViewChange(event) {
-        this.setView(event.target.value);
+        let values = event.target.value.split('/');
+        this.setView(values[0] + '/' + this.view.slots);
         this.setDateHeaders();
         this.handleRefresh();
     }
+
+    slotSizeCtrl(event) {
+        console.debug('slotSizeCtrl  ' + this.view.slotSize);
+        this.setView(this.view.slotSize + '/' + event.detail);
+        this.setDateHeaders();
+        this.handleRefresh();
+    }
+
     /*** /Navigation ***/
 
     /*** Resource Modal ***/
@@ -623,7 +641,6 @@ export default class GanttChart extends LightningElement {
             filterStatus: self._filterData.status
         })
             .then((data) => {
-                debugger;
                 self.isResourceView =
                     typeof self.objectApiName !== 'undefined' &&
                     self.objectApiName.endsWith('Resource__c');
