@@ -1,0 +1,53 @@
+<!--
+  @description       : Number counter with plus and minus buttons 
+  @author            : erlend.hansen@stretch.no | https://trailblazer.me/id/ehansen7
+  @group             : 
+  @last modified on  : 01-07-2022
+  @last modified by  : erlend.hansen@stretch.no | https://trailblazer.me/id/ehansen7
+-->
+<template>
+    <div class="slds-form-element">
+        <div class="slds-form-element__control">
+            <button
+                class="slds-button slds-button_icon slds-button_icon-small slds-input__button_decrement"
+                title="Decrement counter"
+                onclick={setDecrementCounter}
+            >
+                <lightning-icon
+                    icon-name="utility:ban"
+                    alternative-text=""
+                    size="xx-small"
+                    title=""
+                    variant="error"
+                >
+                </lightning-icon>
+                <span class="slds-assistive-text">Decrement counter</span>
+            </button>
+            <input
+                type="text"
+                placeholder={displayQty}
+                data-number={qty}
+                value={displayQty}
+                class="slds-input slds-input_counter"
+            />
+            <button
+                class="slds-button slds-button_icon slds-button_icon-small slds-input__button_increment"
+                title="Increment counter"
+                onclick={setIncrementCounter}
+            >
+                <lightning-icon
+                    icon-name="utility:new"
+                    alternative-text=""
+                    size="xx-small"
+                    title=""
+                    variant="success"
+                >
+                </lightning-icon>
+                <span class="slds-assistive-text">Increment counter</span>
+            </button>
+        </div>
+        <div class="slds-form-element__help slds-hide" id="state-error-1">
+            {errorMessage}
+        </div>
+    </div>
+</template>
