@@ -1,5 +1,7 @@
 # Project and resource mgmt in Gantt chart
 
+[![codecov](https://codecov.io/gh/ehsky/GanttChart/branch/master/graph/badge.svg?token=K3X6Q54297)](https://codecov.io/gh/ehsky/GanttChart)
+
 This repo includes project focused gantt chart to show a light overview of resource allocations.
 It is hosted and built on the salesforce platform.
 
