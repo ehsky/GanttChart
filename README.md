@@ -7,16 +7,17 @@ It is hosted and built on the salesforce platform.
 
 Gantt chart view options
 
+You can change what is displayed by setting the time period, and choosing how many columns to display. \
+You can pick between the following time periods: \
+
 - View by Day
-- View by Day for Month (only supported on full width pages)
 - View by Week
-- View by Week for Quarter
-- View by Week for half Year (only supported on full width pages)
 
 ## Demo
 
 You can quickly spin up an org by clicking on the picture below. \
 This will create a scratch org that you have access to for 1 day \
+Remember to give yourself access to the Gantt app by adding the permission set `View and manage Gantt Chart`. \
 [![Demo scratch org](/.assets/deployDemo.png)](https://hosted-scratch.herokuapp.com/launch?template=https://github.com/ehsky/GanttChartt)
 
 ## Deployment
